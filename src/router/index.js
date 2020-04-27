@@ -7,6 +7,11 @@ const routes = [
     name: 'Increment',
     component: () => import('../views/Increment.vue')
   },
+  {
+    path: '/keep-alive',
+    name: 'KeepAlive',
+    component: () => import('../views/keepAlive/index.vue')
+  },
   // {
   //   path: '/',
   //   name: 'Home',
