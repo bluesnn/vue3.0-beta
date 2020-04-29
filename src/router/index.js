@@ -12,6 +12,16 @@ const routes = [
     name: 'KeepAlive',
     component: () => import('../views/keepAlive/index.vue')
   },
+  {
+    path: '/readonly',
+    name: 'Readonly',
+    component: () => import('../views/readonly.vue')
+  },
+  {
+    path: '/template-refs',
+    name: 'TemplateRefs',
+    component: () => import('../views/templateRefs.vue')
+  },
   // {
   //   path: '/',
   //   name: 'Home',

@@ -1,24 +1,22 @@
 <template>
   <div>
     <button
-      v-for="item in state.tabList"
+      v-for="item in tabList"
       :key="item.id"
-      :class="{ active: item.id === state.tabCur }"
-      @click="toggleTab(item)"
+      :class="{ active: item.id === tabCur }"
+      @click="toggleEvent(item)"
     >
       {{ item.title }}
     </button>
-    <keep-alive>
-      <component :is="state.currentTab" />
-    </keep-alive>
+    <!-- <keep-alive> -->
+      <component :is="currentTab" keep-alive />
+    <!-- </keep-alive> -->
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
-// import Aaa from './components'
-// import Bbb from './components'
 import { Aaa, Bbb } from './components'
+import { toggleTab } from '@/hooks/toggleTab'
 
 export default {
   components: {
@@ -26,23 +24,23 @@ export default {
     Bbb
   },
   setup() {
-    const state = reactive({
-      tabList: [
-        { id: 0, component: 'aaa', title: 'aaa' },
-        { id: 1, component: 'bbb', title: 'bbb' }
-      ],
-      tabCur: 0,
-      currentTab: 'aaa'
-    })
+    const tabList = [
+      { id: 0, component: 'aaa', title: 'aaa' },
+      { id: 1, component: 'bbb', title: 'bbb' }
+    ]
+    const { tabCur, currentTab, toggleEvent } = toggleTab(0, 'aaa')
 
-    function toggleTab(tab) {
-      state.tabCur = tab.id
-      state.currentTab = tab.component
-    }
+
+    // function toggleTab(tab) {
+    //   state.tabCur = tab.id
+    //   state.currentTab = tab.component
+    // }
 
     return {
-      state,
-      toggleTab
+      tabList,
+      tabCur,
+      currentTab,
+      toggleEvent
     }
   }
 }
